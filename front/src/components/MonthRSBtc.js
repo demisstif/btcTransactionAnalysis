@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Alert, DatePicker} from 'antd'
-import { LineChart, Line, XAxis, YAxis,CartesianGrid, Tooltip, Bar, BarChart, Legend } from 'recharts';
+import { Layout, Menu, Alert, DatePicker, Divider} from 'antd'
+import { LineChart, Line, XAxis, YAxis,CartesianGrid, Tooltip, Bar, BarChart, Legend, Label } from 'recharts';
 import moment from 'moment'
 const {MonthPicker} = DatePicker;
 const { Header, Content, Footer } = Layout;
@@ -16,17 +16,9 @@ class MonthRSBtc extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [
-                {name: 'Page A', sent: 4000, received: 2400, amt: 2400},
-                {name: 'Page B', sent: 3000, received: 1398, amt: 2210},
-                {name: 'Page C', sent: 2000, received: 9800, amt: 2290},
-                {name: 'Page D', sent: 2780, received: 3908, amt: 2000},
-                {name: 'Page E', sent: 1890, received: 4800, amt: 2181},
-                {name: 'Page F', sent: 2390, received: 3800, amt: 2500},
-                {name: 'Page G', sent: 3490, received: 4300, amt: 2100},
-            ]
+            data: [],
+            dataAll: []
         };
-        this.componentWillMount = this.componentWillMount.bind(this)
 
     }
 
@@ -34,16 +26,37 @@ class MonthRSBtc extends Component {
 
     componentWillMount() {
         this.getDatas(2018, 3)
+        this.getAllDatas()
     }
 
-    getDatas = (year, month) => {
+    getAllDatas = () => {
         let datas = []
-        fetch("http://127.0.0.1:8081/day/month"+"?exchange=bittrex&year="+year+"&month="+month).then((response) => {
+        const {exchange} = this.props;
+        fetch("http://127.0.0.1:8081/day/all"+"?exchange="+exchange).then((response) => {
             return response.json()
         }).then((json) => {
             for (let i=0; i<json.length;i++) {
                 // alert(json[i].txNumberOneDay)
-                let single = {name:json[i].day,sent:json[i].sentBtc, received:json[i].receivedBtc, amt:2400}
+                let single = {name:String(json[i].month)+'.'+String(json[i].day),sent:json[i].sentBtc, received:json[i].receivedBtc, amt:2400}
+                datas.push(single)
+            }
+            this.setState({dataAll:datas})
+
+
+        }).catch(function (e) {
+            alert(e)
+        })
+    }
+
+    getDatas = (year, month) => {
+        let datas = []
+        const {exchange} = this.props;
+        fetch("http://127.0.0.1:8081/day/month"+"?exchange="+exchange+"&year="+year+"&month="+month).then((response) => {
+            return response.json()
+        }).then((json) => {
+            for (let i=0; i<json.length;i++) {
+                // alert(json[i].txNumberOneDay)
+                let single = {name:String(json[i].month)+'.'+String(json[i].day),sent:json[i].sentBtc, received:json[i].receivedBtc, amt:2400}
                 datas.push(single)
             }
             this.setState({data:datas})
@@ -79,21 +92,38 @@ class MonthRSBtc extends Component {
 
 
     render() {
-        const {data} =this.state
+        const {data, dataAll} =this.state
         return (
             <Content style={{ padding: '0 50px'}}>
                 <div>
-                    <MonthPicker onChange={this.onSelectMonth} placeholder="Select month" defaultValue={moment('2018/3','YYYY/MM')}/>
+                    <p3>recieved代表进入交易所;sent代表出交易所</p3>
+                    <hr/>
+                    <div><b>每月进/出交易所BTC</b></div>
+                    请选择月份 <MonthPicker onChange={this.onSelectMonth} placeholder="Select month" defaultValue={moment('2018/3','YYYY/MM')}/>
                 </div>
-                <BarChart width={1500} height={500} data={data}>
+
+                <BarChart width={1800} height={350} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
+                    <XAxis dataKey="name" >
+                    </XAxis>
                     <YAxis />
                     <Tooltip />
                     <Legend />
                     <Bar dataKey="received" fill="#8884d8" />
                     <Bar dataKey="sent" fill="#82ca9d" />
                 </BarChart>
+                <hr/>
+                <div><b>一月至三月总体趋势</b></div>
+                <LineChart width={1800} height={350} data={dataAll}
+                           margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="received" stroke="#8884d8" />
+                    <Line type="monotone" dataKey="sent" stroke="#82ca9d" />
+                </LineChart>
             </Content>
 
         );

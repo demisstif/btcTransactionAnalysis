@@ -112,7 +112,7 @@ public class ISearchDaoImpl implements ISearchDao{
 
     @Override
     public List<BtcMonthData> getMonthDataByMonth(String exchange, int year, int month) {
-        String sql = "SELECT * FROM day_data WHERE year=? AND month=? AND exchange=?";
+        String sql = "SELECT * FROM month_data WHERE year=? AND month=? AND exchange=?";
         return jdbcTemplate.query(sql, new Object[]{year, month, exchange}, new RowMapper<BtcMonthData>(){
             @Nullable
             @Override

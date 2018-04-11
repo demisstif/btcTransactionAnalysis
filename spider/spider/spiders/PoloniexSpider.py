@@ -15,7 +15,7 @@ class PoloniexSpider(Spider):
 
     def start_requests(self):
         # url = 'https://www.walletexplorer.com/wallet/Poloniex.com'
-        url = 'https://www.walletexplorer.com/wallet/Poloniex.com?page=424'
+        url = 'https://www.walletexplorer.com/wallet/Poloniex.com?page=3556'
         yield Request(url)
 
     def parse(self, response):

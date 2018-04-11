@@ -1,6 +1,7 @@
 package com.demisstif.btcbackend.controler;
 
 import com.demisstif.btcbackend.model.BtcDayData;
+import com.demisstif.btcbackend.model.BtcMonthData;
 import com.demisstif.btcbackend.model.HotDegree;
 import com.demisstif.btcbackend.model.StringBean;
 import com.demisstif.btcbackend.service.ISearchService;
@@ -46,6 +47,18 @@ public class HelloControler {
     public List<BtcDayData> getDayReceived(@PathParam(value = "exchange") String exchange) {
         List<BtcDayData> btcDayData = iSearchService.dayByExchange(exchange);
         return btcDayData;
+    }
+
+    @RequestMapping(value = "/month/month", method = RequestMethod.GET)
+    public List<BtcMonthData> getMonthDataByMonth(@PathParam(value = "exchange") String exchange,@PathParam(value="year") Integer year, @PathParam("month") Integer month) {
+        List<BtcMonthData> btcMonthData = iSearchService.oneMonth(exchange, year, month);
+        return btcMonthData;
+    }
+
+    @RequestMapping(value = "/month/all", method = RequestMethod.GET)
+    public List<BtcMonthData> getMonthByExchange(@PathParam(value = "exchange") String exchange) {
+        List<BtcMonthData> btcMonthData = iSearchService.monthByExchange(exchange);
+        return btcMonthData;
     }
 
 //    //天趋势

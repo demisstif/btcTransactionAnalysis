@@ -9,7 +9,7 @@ import Type from "./Type";
 const { Content, Sider } = Layout;
 
 
-class Bittrex extends Component {
+class Poloniex extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -74,4 +74,4 @@ class Bittrex extends Component {
 
 }
 
-export default Bittrex
+export default Poloniex

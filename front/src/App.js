@@ -6,6 +6,8 @@ import Bittrex from './components/Bittrex';
 
 import 'antd/dist/antd.css';
 import './App.css';
+import Poloniex from "./components/Poloniex";
+import Contrast from "./components/Contrast";
 
 const { Header, Content, Footer } = Layout;
 
@@ -32,6 +34,8 @@ class App extends Component {
 
     renderContent = () => {
         const {  mode } = this.state;
+        let bittrex = 'bittrex'
+        let poloniex = 'poloniex'
 
 
         // if (!payroll) {
@@ -41,11 +45,13 @@ class App extends Component {
         switch(mode) {
             case 'huobi':
                 // return <Alert message="huobi" type="info" showIcon/>
-                return <Alert message="bittrex" type="info" showIcon/>
+                return <Alert message="数据获取网站关于火币的数据不完整,暂不处理" type="info" showIcon/>
             case 'bittrex':
-                return <Bittrex/>
+                return <Bittrex exchange={bittrex}/>
             case 'poloniex':
-                return <Alert message="poloniex" type="info" showIcon/>
+                return <Poloniex exchange={poloniex}/>
+            case 'contrast':
+                return <Contrast/>
             default:
                 return <Alert message="请选一个模式" type="info" showIcon />
         }
@@ -68,6 +74,8 @@ class App extends Component {
                         <Menu.Item key="bittrex">bittrex</Menu.Item>
                         <Menu.Item key="poloniex">poloniex</Menu.Item>
                         <Menu.Item key="huobi">huobi</Menu.Item>
+                        <Menu.Item key="contrast">对比分析</Menu.Item>
+
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>

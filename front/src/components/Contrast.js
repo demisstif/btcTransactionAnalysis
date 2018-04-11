@@ -5,20 +5,17 @@ import MonthRSBtc from './MonthRSBtc'
 import HotDayOneMonth from './HotDayOneMonth'
 import Balance from "./Balance";
 import Type from "./Type";
+import ContrastHot from "./ContrastHot";
+import ContrastBalance from "./ContrastBalance";
 
 const { Content, Sider } = Layout;
 
-
-class Bittrex extends Component {
+class Contrast extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mode: 'monthRSBtc'
+            mode: 'balance'
         };
-
-    }
-
-    componentDidMount() {
 
     }
 
@@ -27,20 +24,15 @@ class Bittrex extends Component {
             mode: key
         });
     }
-
-
     renderContent = () => {
         const {exchange} = this.props;
         const { mode}  = this.state;
         switch (mode) {
-            case 'monthRSBtc':
-                return <MonthRSBtc exchange={exchange}/>
-            case 'hotDayOneMonth':
-                return <HotDayOneMonth exchange={exchange}/>
+
+            case 'contrastHot':
+                return <ContrastHot/>
             case 'balance':
-                return <Balance exchange={exchange}/>
-            case 'type':
-                return <Type exchange={exchange}/>
+                return <ContrastBalance/>
 
         }
     }
@@ -51,15 +43,15 @@ class Bittrex extends Component {
                 <Sider width={200} style={{ background: '#fff'}}>
                     <Menu
                         mode='inline'
-                        defaultSelectedKeys={['monthRSBtc']}
+                        defaultSelectedKeys={['balance']}
                         style={{height:'100%'}}
                         onSelect={this.onSelectTab}
                     >
 
-                        <Menu.Item key="monthRSBtc">进/出BTC数目</Menu.Item>
-                        <Menu.Item key="balance">交易所BTC数目</Menu.Item>
-                        <Menu.Item key="hotDayOneMonth">交易所活跃度</Menu.Item>
-                        <Menu.Item key="type">交易种类占比</Menu.Item>
+                        {/*<Menu.Item key="monthRSBtc">进/出BTC数目</Menu.Item>*/}
+                        <Menu.Item key="balance">交易所BTC数目对比</Menu.Item>
+                        <Menu.Item key="contrastHot">交易所活跃度对比</Menu.Item>
+                        {/*<Menu.Item key="type">交易种类占比</Menu.Item>*/}
 
                     </Menu>
                 </Sider>
@@ -70,8 +62,6 @@ class Bittrex extends Component {
             </Layout>
         );
     }
-
-
 }
 
-export default Bittrex
+export default Contrast

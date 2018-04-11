@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class HelloControler {
+public class MainControler {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

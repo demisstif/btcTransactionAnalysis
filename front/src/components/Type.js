@@ -20,7 +20,7 @@ class Type extends Component {
         let datasAmount = []
         let datasBtc = []
         const {exchange} = this.props;
-        fetch("http://127.0.0.1:8081/month/month"+"?exchange="+exchange+"&year="+year+"&month="+month).then((response) => {
+        fetch("http://demisstif.cc:8081/month/month"+"?exchange="+exchange+"&year="+year+"&month="+month).then((response) => {
             return response.json()
         }).then((json) => {
             for (let i=0; i<json.length;i++) {
@@ -37,7 +37,7 @@ class Type extends Component {
             }
             this.setState({dataAmount:datasAmount, dataBtc:datasBtc})
             // console.log(JSON.stringify(datas))
-            // fetch("http://127.0.0.1:8081/received/month/btc"+"?exchange=bittrex").then((response) => {
+            // fetch("http://demisstif.cc:8081/received/month/btc"+"?exchange=bittrex").then((response) => {
             //    return response.json()
             // }).then((json) => {
             //     for (let i=0; i<json.length;i++) {

@@ -23,8 +23,8 @@ class DayReceived extends Component {
 
     componentWillMount() {
         let datas = []
-        // fetch("http://127.0.0.1:8081/day/month"+"?exchange=bittrex&year=2018&month=3").then((response) => {
-        fetch("http://127.0.0.1:8081/day/all"+"?exchange=bittrex").then((response) => {
+        // fetch("http://demisstif.cc:8081/day/month"+"?exchange=bittrex&year=2018&month=3").then((response) => {
+        fetch("http://demisstif.cc:8081/day/all"+"?exchange=bittrex").then((response) => {
             return response.json()
         }).then((json) => {
             console.log(json)
@@ -49,7 +49,7 @@ class DayReceived extends Component {
     //     //     }
     //     // })
     //     let datas = []
-    //     fetch("http://127.0.0.1:8081/sent/month/btc").then(function(response) {
+    //     fetch("http://demisstif.cc:8081/sent/month/btc").then(function(response) {
     //         return response.json()
     //     }).then(function(json) {
     //

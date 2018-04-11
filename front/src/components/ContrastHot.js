@@ -41,7 +41,7 @@ class ContrastHot extends Component {
 
     getAllDatas = () => {
         let datas = []
-        fetch("http://127.0.0.1:8081/day/all"+"?exchange=bittrex").then((response) => {
+        fetch("http://demisstif.cc:8081/day/all"+"?exchange=bittrex").then((response) => {
             return response.json()
         }).then((json) => {
             for (let i=0; i<json.length;i++) {
@@ -49,7 +49,7 @@ class ContrastHot extends Component {
                 let single = {name:String(json[i].month)+'.'+String(json[i].day),bittrex:json[i].sentAmount+json[i].receivedAmount, poloniex:0, amt:2400}
                 datas.push(single)
             }
-            fetch("http://127.0.0.1:8081/day/all"+"?exchange=poloniex").then((response) => {
+            fetch("http://demisstif.cc:8081/day/all"+"?exchange=poloniex").then((response) => {
                 return response.json()
             }).then((json) => {
                 for (let i=0; i<json.length;i++) {
@@ -69,7 +69,7 @@ class ContrastHot extends Component {
     getDatas = (year, month) => {
         let datas = []
         // const {exchange} = this.props;
-        fetch("http://127.0.0.1:8081/day/month"+"?exchange=bittrex&year="+year+"&month="+month).then((response) => {
+        fetch("http://demisstif.cc:8081/day/month"+"?exchange=bittrex&year="+year+"&month="+month).then((response) => {
             return response.json()
         }).then((json) => {
             for (let i=0; i<json.length;i++) {
@@ -77,7 +77,7 @@ class ContrastHot extends Component {
                 let single = {name:String(json[i].month)+'.'+String(json[i].day),bittrex:json[i].sentAmount+json[i].receivedAmount, poloniex:0, amt:2400}
                 datas.push(single)
             }
-            fetch("http://127.0.0.1:8081/day/month"+"?exchange=poloniex&year="+year+"&month="+month).then((response) => {
+            fetch("http://demisstif.cc:8081/day/month"+"?exchange=poloniex&year="+year+"&month="+month).then((response) => {
                 return response.json()
             }).then((json) => {
                 for (let i=0; i<json.length;i++) {

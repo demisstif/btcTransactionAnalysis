@@ -1,0 +1,8 @@
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 1, 473102.33410629, 518754, 495203.25734069, 9248, 2930.57714598, 'bittrex');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 1, 187466.72410403, 224377, 201223.46316153, 20451, 18428.88651437, 'poloniex');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 2, 224340.23287738, 191558, 222330.74023423, 9467, 5309.53793229, 'bittrex');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 2, 0.08748183, 12, null, 0, 16.93824821, 'huobi');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 2, 87936.77291135, 79543, 101945.18991363, 24221, 4450.91723999, 'poloniex');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 3, 167364.45854296, 141582, 165228.92737502, 10256, 7860.63319003, 'bittrex');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 3, 0.06347908, 11, null, 0, 17.00172729, 'huobi');
+INSERT INTO btc.month_data (YEAR, month, receivedBtc, receivedAmount, sentBtc, sentAmount, balance, exchange) VALUES (2018, 3, 76840.93430199, 54874, 74587.04323060, 19399, 6723.23289585, 'poloniex');

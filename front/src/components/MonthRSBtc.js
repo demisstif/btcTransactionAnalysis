@@ -32,7 +32,7 @@ class MonthRSBtc extends Component {
     getAllDatas = () => {
         let datas = []
         const {exchange} = this.props;
-        fetch("http://127.0.0.1:8081/day/all"+"?exchange="+exchange).then((response) => {
+        fetch("http://demisstif.cc:8081/day/all"+"?exchange="+exchange).then((response) => {
             return response.json()
         }).then((json) => {
             for (let i=0; i<json.length;i++) {
@@ -51,7 +51,7 @@ class MonthRSBtc extends Component {
     getDatas = (year, month) => {
         let datas = []
         const {exchange} = this.props;
-        fetch("http://127.0.0.1:8081/day/month"+"?exchange="+exchange+"&year="+year+"&month="+month).then((response) => {
+        fetch("http://demisstif.cc:8081/day/month"+"?exchange="+exchange+"&year="+year+"&month="+month).then((response) => {
             return response.json()
         }).then((json) => {
             for (let i=0; i<json.length;i++) {
@@ -61,7 +61,7 @@ class MonthRSBtc extends Component {
             }
             this.setState({data:datas})
             // console.log(JSON.stringify(datas))
-            // fetch("http://127.0.0.1:8081/received/month/btc"+"?exchange=bittrex").then((response) => {
+            // fetch("http://demisstif.cc:8081/received/month/btc"+"?exchange=bittrex").then((response) => {
             //    return response.json()
             // }).then((json) => {
             //     for (let i=0; i<json.length;i++) {

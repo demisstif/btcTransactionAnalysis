@@ -24,15 +24,22 @@ class SpiderPipeline(object):
         cursor = dbObject.cursor()
         cursor.execute("USE btc")
         if isinstance(item, TransactionItem):
-            sql = 'INSERT INTO transaction (date, balance, received_amount, received_from, sent_amount, sent_to, txid, type, exchange) VALUE (%s, %s, %s, %s, %s, %s, %s, %s, %s)'
+            sql = 'INSERT INTO transaction (date, balance, received_amount, received_from, sent_amount,  txid, type, exchange) VALUE (%s, %s, %s, %s, %s, %s, %s, %s)'
             try:
                 cursor.execute(sql, (
                 item['date'], item['balance'], item['received_amount'], item['received_from'], item['sent_amount'],
-                item['sent_to'], item['txid'], item['type'], item['exchange']))
+                 item['txid'], item['type'], item['exchange']))
                 cursor.connection.commit()
             except BaseException as e:
                 print("error>>>>>", e, "<<<<error")
                 dbObject.rollback()
             return item
         elif isinstance(item, SentDetail):
-            pass
+            sql = 'INSERT INTO sent_detail(sent_amount, sent_to, txid, exchange) VALUE(%s, %s, %s,%s)'
+            try:
+                cursor.execute(sql, (item['sent_amount'],item['sent_to'], item['txid'], item['exchange']))
+                cursor.connection.commit()
+            except BaseException as e:
+                print("error>>>>>", e, "<<<<error")
+                dbObject.rollback()
+            return item

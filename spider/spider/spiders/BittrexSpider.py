@@ -37,7 +37,7 @@ class BittrexSpider(Spider):
                     item['received_from'] = "error"
                 item['received_amount'] = float(transaction.xpath('.//td[@class="inout"]/table/tr/td[@class="amount diff"]/text()').extract()[0][1:].strip())
                 item['type'] = 0
-                item['sent_to'] = ' '
+                # item['sent_to'] = ' '
                 item['sent_amount'] = 0
 
                 yield item
@@ -51,6 +51,7 @@ class BittrexSpider(Spider):
                 for sent in senttos:
                     detail_item = SentDetail()
                     detail_item['txid'] = item['txid']
+                    detail_item['exchange'] = 'bittrex'
                     amount = sent.xpath('.//td[@class="amount diff"]/text()').extract()
                     if amount :
                         walletid = sent.xpath('.//td[@class="walletid"]')[1].xpath('.//a/@href').extract()[0][8:]
@@ -70,11 +71,11 @@ class BittrexSpider(Spider):
                         total_amount += single_amount
                     yield detail_item
                 item['sent_amount'] = total_amount
+                item['exchange'] = 'bittrex'
                 yield item
         count = 1
         hrefs = response.xpath('.//div[@class="paging"]/a[contains(text(), "Next")]/@href').extract()
         next_url = "https://www.walletexplorer.com" + hrefs[0]
-        log.msg(next_url[0])
         limit = next_url[-1]
         if int(limit) < page:
             yield Request(next_url)

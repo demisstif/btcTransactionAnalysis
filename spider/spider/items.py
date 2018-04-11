@@ -19,7 +19,7 @@ class TransactionItem(scrapy.Item):
     received_amount = scrapy.Field()
     received_from = scrapy.Field()
     sent_amount = scrapy.Field()
-    sent_to = scrapy.Field()
+    # sent_to = scrapy.Field()
     balance = scrapy.Field()
     txid = scrapy.Field()
     type = scrapy.Field()
@@ -29,5 +29,6 @@ class SentDetail(scrapy.Item):
     sent_amount = scrapy.Field()
     sent_to = scrapy.Field()
     txid = scrapy.Field()
+    exchange = scrapy.Field()
 
 

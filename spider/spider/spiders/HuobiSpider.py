@@ -1,6 +1,6 @@
 from scrapy.spiders import Spider
 from scrapy import Request
-from spider.items import TransactionItem
+from spider.items import TransactionItem,SentDetail
 from scrapy import log
 from .value import page
 
@@ -37,7 +37,7 @@ class HuobiSpider(Spider):
                     item['received_from'] = "error"
                 item['received_amount'] = float(transaction.xpath('.//td[@class="inout"]/table/tr/td[@class="amount diff"]/text()').extract()[0][1:].strip())
                 item['type'] = 0
-                item['sent_to'] = ' '
+                # item['sent_to'] = ' '
                 item['sent_amount'] = 0
 
                 yield item
@@ -47,20 +47,31 @@ class HuobiSpider(Spider):
                 item['received_from'] = ' '
                 # yield item
                 senttos = transaction.xpath('.//table[@class="empty"]/tr')
+                total_amount = 0.0
                 for sent in senttos:
+                    detail_item = SentDetail()
+                    detail_item['txid'] = item['txid']
+                    detail_item['exchange'] = 'huobi'
                     amount = sent.xpath('.//td[@class="amount diff"]/text()').extract()
                     if amount :
                         walletid = sent.xpath('.//td[@class="walletid"]')[1].xpath('.//a/@href').extract()[0][8:]
-                        item['sent_to'] = walletid
+                        detail_item['sent_to'] = walletid
                         if amount[0].startswith('-'):
-                            item['sent_amount'] = float(amount[0][1:])
+                            single_amount = float(amount[0][1:])
+                            total_amount += single_amount
+                            detail_item['sent_amount'] = single_amount
                         elif amount[0].startswith('0'):
-                            item['sent_amount'] = float(amount[0])
+                            single_amount = float(amount[0].strip())
+                            total_amount += single_amount
+                            detail_item['sent_amount'] = single_amount
                     else:
-                        item['sent_to'] = 'fee'
-                        item['sent_amount'] = float(sent.xpath('.//td[@class="amount diff"]/em/text()').extract()[0].strip()[1:-1][1:])
-                        log.msg('sent')
-                    yield item
+                        detail_item['sent_to'] = 'fee'
+                        single_amount = float(sent.xpath('.//td[@class="amount diff"]/em/text()').extract()[0].strip()[1:-1][1:])
+                        detail_item['sent_amount'] = single_amount
+                        total_amount += single_amount
+                    yield detail_item
+                item['sent_amount'] = total_amount
+                yield item
         count = 1
         hrefs = response.xpath('.//div[@class="paging"]/a[contains(text(), "Next")]/@href').extract()
         next_url = "https://www.walletexplorer.com" + hrefs[0]

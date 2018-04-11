@@ -15,7 +15,8 @@ class HuobiSpider(Spider):
     }
 
     def start_requests(self):
-        url = 'https://www.walletexplorer.com/wallet/Huobi.com'
+        # url = 'https://www.walletexplorer.com/wallet/Huobi.com'
+        url = 'https://www.walletexplorer.com/wallet/Huobi.com?page=200'
         yield Request(url)
 
     def parse(self, response):

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Layout, Menu, Spin, Alert } from 'antd';
-import Huobi from './components/Huobi';
+import Bittrex from './components/Bittrex';
 
 
 import 'antd/dist/antd.css';
@@ -15,7 +15,7 @@ class App extends Component {
 
         this.state = {
             storageValue: 0,
-            mode: 'huobi'
+            mode: 'bittrex'
         }
     }
 
@@ -41,9 +41,9 @@ class App extends Component {
         switch(mode) {
             case 'huobi':
                 // return <Alert message="huobi" type="info" showIcon/>
-                return <Huobi/>
-            case 'bittrex':
                 return <Alert message="bittrex" type="info" showIcon/>
+            case 'bittrex':
+                return <Bittrex/>
             case 'poloniex':
                 return <Alert message="poloniex" type="info" showIcon/>
             default:
@@ -60,17 +60,18 @@ class App extends Component {
                     <Menu
                         theme="dark"
                         mode="horizontal"
-                        defaultSelectedKeys={['huobi']}
+                        defaultSelectedKeys={['bittrex']}
                         style={{ lineHeight: '64px' }}
                         onSelect={this.onSelectTab}
                     >
-                        <Menu.Item key="huobi">huobi</Menu.Item>
+
                         <Menu.Item key="bittrex">bittrex</Menu.Item>
                         <Menu.Item key="poloniex">poloniex</Menu.Item>
+                        <Menu.Item key="huobi">huobi</Menu.Item>
                     </Menu>
                 </Header>
                 <Content style={{ padding: '0 50px' }}>
-                    <Layout style={{ padding: '24px 0', background: '#fff', minHeight: '600px' }}>
+                    <Layout style={{ padding: '24px 0', background: '#fff', minHeight: '1000px' }}>
                         {this.renderContent()}
                     </Layout>
                 </Content>

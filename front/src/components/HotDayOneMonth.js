@@ -3,7 +3,7 @@ import { Layout, Menu, Alert} from 'antd'
 import { LineChart, Line, XAxis, YAxis,CartesianGrid, Tooltip } from 'recharts';
 import $ from 'jquery'
 
-class DayReceived extends Component {
+class HotDayOneMonth extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,20 +17,35 @@ class DayReceived extends Component {
                 {name: 'Page G', uv: 3490, sent: 4300, amt: 2100},
             ]
         };
-        this.componentWillMount = this.componentWillMount.bind(this)
+        // this.componentWillMount = this.componentWillMount.bind(this)
 
     }
 
     componentWillMount() {
         let datas = []
-        // fetch("http://127.0.0.1:8081/day/month"+"?exchange=bittrex&year=2018&month=3").then((response) => {
-        fetch("http://127.0.0.1:8081/day/all"+"?exchange=bittrex").then((response) => {
+        // fetch("http://127.0.0.1:8081/sent/month/btc").then((response) => {
+        //     let json = response.json()
+        //     console.log(json)
+        //
+        //     for (let i=0; i<json.length;i++) {
+        //         alert(json[i].txNumberOneDay)
+        //         let single = {name:json[i].day,uv:4000, sent:json[i].txNumberOneDay, amt:2400}
+        //         datas.push(single)
+        //     }
+        //     console.log(JSON.stringify(datas))
+        //     let str_data = JSON.stringify(datas)
+        //     this.setState({data:[{"name":1,"uv":4000,"sent":4952,"amt":2400},{"name":2,"uv":4000,"sent":222,"amt":2400},{"name":3,"uv":4000,"sent":165228.92737502,"amt":2400}]})
+        // })
+
+
+
+        fetch("http://127.0.0.1:8081/day/month"+"?exchange=bittrex&month=2&year=2018").then((response) => {
             return response.json()
         }).then((json) => {
             console.log(json)
             for (let i=0; i<json.length;i++) {
                 // alert(json[i].txNumberOneDay)
-                let single = {name:String(json[i].month)+'.'+String(json[i].day),uv:4000, sent:json[i].receivedBtc, amt:2400}
+                let single = {name:json[i].day,uv:4000, sent:json[i].receivedAmount+json[i].sentAmount, amt:2400}
                 datas.push(single)
             }
             console.log(JSON.stringify(datas))
@@ -71,7 +86,7 @@ class DayReceived extends Component {
     render() {
         const {data} =this.state
         return (
-            <LineChart width={1200} height={400} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+            <LineChart width={400} height={400} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                 <Line type="monotone" dataKey="sent" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
                 <XAxis dataKey="name" />
@@ -82,4 +97,4 @@ class DayReceived extends Component {
     }
 }
 
-export default DayReceived
+export default HotDayOneMonth

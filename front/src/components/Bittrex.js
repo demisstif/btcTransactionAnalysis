@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { Layout, Menu, Alert} from 'antd'
 import DayReceived from './DayReceived'
 import MonthRSBtc from './MonthRSBtc'
+import HotDayOneMonth from './HotDayOneMonth'
 
 const { Content, Sider } = Layout;
 
 
-class Huobi extends Component {
+class Bittrex extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,6 +38,8 @@ class Huobi extends Component {
                 return <div>DaySent</div>
             case 'monthRSBtc':
                 return <MonthRSBtc/>
+            case 'hotDayOneMonth':
+                return <HotDayOneMonth/>
         }
     }
 
@@ -53,6 +56,7 @@ class Huobi extends Component {
                         <Menu.Item key="dayReceived">月离场btc</Menu.Item>
                         <Menu.Item key="daySent">每日提取资金</Menu.Item>
                         <Menu.Item key="monthRSBtc">每月进/离资金</Menu.Item>
+                        <Menu.Item key="hotDayOneMonth">月内日活跃度</Menu.Item>
 
                     </Menu>
                 </Sider>
@@ -67,4 +71,4 @@ class Huobi extends Component {
 
 }
 
-export default Huobi
+export default Bittrex

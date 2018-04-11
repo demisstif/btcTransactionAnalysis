@@ -15,7 +15,8 @@ class BittrexSpider(Spider):
     }
 
     def start_requests(self):
-        url = 'https://www.walletexplorer.com/wallet/Bittrex.com'
+        # url = 'https://www.walletexplorer.com/wallet/Bittrex.com'
+        url = 'https://www.walletexplorer.com/wallet/Bittrex.com?page=9397'
         yield Request(url)
 
     def parse(self, response):

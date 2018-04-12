@@ -94,7 +94,7 @@ class MonthRSBtc extends Component {
     render() {
         const {data, dataAll} =this.state
         return (
-            <Content style={{ padding: '0 50px'}}>
+            <Content style={{ padding: '0 0px'}}>
                 <div>
                     <p3>recieved代表进入交易所;sent代表出交易所</p3>
                     <hr/>
@@ -102,7 +102,7 @@ class MonthRSBtc extends Component {
                     请选择月份 <MonthPicker onChange={this.onSelectMonth} placeholder="Select month" defaultValue={moment('2018/3','YYYY/MM')}/>
                 </div>
 
-                <BarChart width={1800} height={350} data={data}>
+                <BarChart width={1000} height={300} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" >
                     </XAxis>
@@ -114,7 +114,7 @@ class MonthRSBtc extends Component {
                 </BarChart>
                 <hr/>
                 <div><b>一月至三月总体趋势</b></div>
-                <LineChart width={1800} height={350} data={dataAll}
+                <LineChart width={1000} height={300} data={dataAll}
                            margin={{ top: 5, right: 30, left: 10, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />

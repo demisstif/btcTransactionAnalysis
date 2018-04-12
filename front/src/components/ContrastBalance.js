@@ -97,7 +97,7 @@ class ContrastBalance extends Component {
                 </header>
                 <Divider/>
                 <Content>
-                    <LineChart width={1500} height={400} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <LineChart width={1000} height={300} data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                         <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
                         <XAxis dataKey="name" >
                             <Label value="日期" offset={0} position="insideBottom" />
@@ -110,7 +110,7 @@ class ContrastBalance extends Component {
                     </LineChart>
                     <hr/>
                     <div><b>一月到三月活跃度变化</b></div>
-                    <LineChart width={1800} height={400} data={dataAll} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                    <LineChart width={1000} height={300} data={dataAll} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                         <CartesianGrid stroke="#ccc" strokeDasharray="5 5"/>
                         <XAxis dataKey="name" >
                             <Label value="日期" offset={0} position="insideBottom" />

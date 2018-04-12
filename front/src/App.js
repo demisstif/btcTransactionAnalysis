@@ -62,7 +62,7 @@ class App extends Component {
         return (
             <Layout>
                 <Header className="header">
-                    <div className="logo">btc 交易所交易数据分析</div>
+                    <div className="logo">BTC交易所数据分析</div>
                     <Menu
                         theme="dark"
                         mode="horizontal"
@@ -71,9 +71,9 @@ class App extends Component {
                         onSelect={this.onSelectTab}
                     >
 
-                        <Menu.Item key="bittrex">bittrex</Menu.Item>
-                        <Menu.Item key="poloniex">poloniex</Menu.Item>
-                        <Menu.Item key="huobi">huobi</Menu.Item>
+                        <Menu.Item key="bittrex">Bittrex</Menu.Item>
+                        <Menu.Item key="poloniex">Poloniex</Menu.Item>
+                        <Menu.Item key="huobi">Huobi</Menu.Item>
                         <Menu.Item key="contrast">对比分析</Menu.Item>
 
                     </Menu>

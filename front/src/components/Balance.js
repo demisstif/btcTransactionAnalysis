@@ -93,7 +93,7 @@ class Balance extends Component {
                 <Divider/>
                 <Content>
 
-                    <AreaChart width={1500} height={350} data={data}
+                    <AreaChart width={1000} height={300} data={data}
                                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                         <defs>
                             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -116,7 +116,7 @@ class Balance extends Component {
                     <div>
                         一月至三月交易所BTC数目变动
                     </div>
-                    <AreaChart width={1800} height={350} data={dataAll}
+                    <AreaChart width={1000} height={300} data={dataAll}
                                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                         <defs>
                             {/*<linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">*/}

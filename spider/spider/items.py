@@ -5,30 +5,45 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item,Field
 
 
-class SpiderItem(scrapy.Item):
+class SpiderItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
 
-class TransactionItem(scrapy.Item):
+class TransactionItem(Item):
     # 交易日期
-    date = scrapy.Field()
-    received_amount = scrapy.Field()
-    received_from = scrapy.Field()
-    sent_amount = scrapy.Field()
+    date = Field()
+    received_amount = Field()
+    received_from = Field()
+    sent_amount = Field()
     # sent_to = scrapy.Field()
-    balance = scrapy.Field()
-    txid = scrapy.Field()
-    type = scrapy.Field()
-    exchange = scrapy.Field()
+    balance = Field()
+    txid = Field()
+    type = Field()
+    exchange = Field()
 
-class SentDetail(scrapy.Item):
-    sent_amount = scrapy.Field()
-    sent_to = scrapy.Field()
-    txid = scrapy.Field()
-    exchange = scrapy.Field()
+class SentDetail(Item):
+    sent_amount = Field()
+    sent_to = Field()
+    txid = Field()
+    exchange = Field()
+
+
+class IsBullshitItem(Item):
+    title = Field()
+    author = Field()
+    tag = Field()
+    date = Field()
+    link = Field()
+
+class CoinDetail(Item):
+    rank = Field()
+    address = Field()
+    quantity = Field()
+    percentage = Field()
+
 
 

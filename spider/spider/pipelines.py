@@ -5,8 +5,8 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql
-from .items import TransactionItem,SentDetail
-
+from .items import TransactionItem,SentDetail,CoinDetail
+import logging
 def dbHandle():
     conn = pymysql.connect(
         host = 'localhost',
@@ -43,3 +43,14 @@ class SpiderPipeline(object):
                 print("error>>>>>", e, "<<<<error")
                 dbObject.rollback()
             return item
+        elif isinstance(item, CoinDetail):
+            logging.info(item)
+            sql = 'INSERT INTO coin_detail VALUE (%s,%s,%s,%s)'
+            try:
+                cursor.execute(sql, (item['rank'], item['address'], item['quantity'], item['percentage']))
+                cursor.connection.commit
+            except BaseException as e:
+                print("error>>>", e, "<<<error")
+                dbObject.rollback()
+            return item
+

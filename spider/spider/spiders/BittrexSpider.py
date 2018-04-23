@@ -1,7 +1,7 @@
 from scrapy.spiders import Spider
 from scrapy import Request
 from spider.items import TransactionItem,SentDetail
-from scrapy import log
+# from scrapy import log
 from .value import page
 
 
@@ -16,7 +16,7 @@ class BittrexSpider(Spider):
 
     def start_requests(self):
         # url = 'https://www.walletexplorer.com/wallet/Bittrex.com'
-        url = 'https://www.walletexplorer.com/wallet/Bittrex.com?page=9397'
+        url = 'https://www.walletexplorer.com/wallet/Bittrex.com?page=2'
         yield Request(url)
 
     def parse(self, response):
